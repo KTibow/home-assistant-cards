@@ -1,4 +1,4 @@
-print("Searching...", os.getenv("gh_token"))
+print("Searching...")
 import requests
 import json
 import os
@@ -10,7 +10,7 @@ from time import sleep, time
 
 donestuff = 0
 start = time()
-
+print(os.getenv("gh_token"))
 for page in range(150):
     resp = requests.get(
         "https://api.github.com/search/code",
