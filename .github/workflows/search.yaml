@@ -19,7 +19,7 @@ jobs:
           path: |
             ~/.cache/pip
           key: install-cache
-      - with:
+      - env:
           gh_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python3 -m pip install requests
