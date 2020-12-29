@@ -10,7 +10,6 @@ from time import sleep, time
 
 donestuff = 0
 start = time()
-print(os.getenv("gh_token"))
 for page in range(150):
     resp = requests.get(
         "https://api.github.com/search/code",
@@ -42,11 +41,11 @@ for page in range(150):
             commits = requests.get(
                 "https://api.github.com/repos/" + reponame + "/commits",
                 headers={
-                    "Authorization": "token" + os.getenv("gh_token")
+                    "Authorization": "token " + os.getenv("gh_token")
                 },
             )
             commits = commits.json()
-            print(commits)
+            print(commits[0])
             commitsha = commits[0]["sha"]
             files = requests.get(
                 "https://api.github.com/repos/"
@@ -54,7 +53,7 @@ for page in range(150):
                 + "/git/trees/"
                 + commitsha,
                 headers={
-                    "Authorization": "token" + os.getenv("gh_token")
+                    "Authorization": "token " + os.getenv("gh_token")
                 },
                 params={"recursive": "1"},
             )
@@ -78,7 +77,7 @@ for page in range(150):
                 info = requests.get(
                     "https://api.github.com/repos/" + reponame,
                     headers={
-                        "Authorization": "token" + os.getenv("gh_token")
+                        "Authorization": "token " + os.getenv("gh_token")
                     },
                 )
                 info = info.json()
