@@ -1,0 +1,26 @@
+name: "Search for new repos"
+on:
+  push:
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Download repo
+      - uses: actions/setup-python@v2
+        name: Setup Python
+        with:
+          python-version: '3.8.x'
+      - uses: actions/cache@v2
+        name: Cache
+        with:
+          path: |
+            ~/.cache/pip
+          key: install-cache
+      - with:
+          gh_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 -m pip install requests
+          python3 ".github/workflows/search.py"
