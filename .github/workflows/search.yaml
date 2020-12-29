@@ -25,3 +25,10 @@ jobs:
           gh_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python3 ".github/workflows/search.py"
+      - uses: actions/upload-artifact@v2
+        with:
+          name: repositories
+          path: |
+            cards.txt
+            oldcards.txt
+      
