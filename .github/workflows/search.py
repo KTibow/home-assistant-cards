@@ -45,7 +45,7 @@ for page in range(150):
                 },
             )
             commits = commits.json()
-            print(commits[0])
+            print(commits[0]["sha"])
             commitsha = commits[0]["sha"]
             files = requests.get(
                 "https://api.github.com/repos/"
