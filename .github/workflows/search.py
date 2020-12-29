@@ -1,4 +1,4 @@
-print("Searching...")
+print("Searching...", os.getenv("gh_token"))
 import requests
 import json
 import os
