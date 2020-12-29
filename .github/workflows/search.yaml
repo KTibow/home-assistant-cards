@@ -19,8 +19,9 @@ jobs:
           path: |
             ~/.cache/pip
           key: install-cache
+      - run: |
+          python3 -m pip install requests
       - env:
           gh_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python3 -m pip install requests
           python3 ".github/workflows/search.py"
