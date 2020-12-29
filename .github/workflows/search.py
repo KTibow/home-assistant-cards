@@ -32,6 +32,7 @@ for page in range(150):
         exit()
     for result in resp:
         reponame = result["repository"]["full_name"]
+        print(reponame)
         if (
             "component" not in reponame
             and "home-assistant-community-themes" not in reponame
@@ -45,6 +46,7 @@ for page in range(150):
                 },
             )
             commits = commits.json()
+            print(commits)
             commitsha = commits[0]["sha"]
             files = requests.get(
                 "https://api.github.com/repos/"
@@ -57,6 +59,7 @@ for page in range(150):
                 params={"recursive": "1"},
             )
             files = files.json()
+            print(files)
             files = [file["path"] for file in files["tree"]]
             files = [
                 file.split("/")[len(file.split("/")) - 1] for file in files
